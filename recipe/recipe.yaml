@@ -1,8 +1,9 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/prefix-dev/recipe-format/main/schema.json
 schema_version: 1
 
 context:
   name: django-eventtools
-  version: 1.0.3
+  version: "1.0.3"
 
 package:
   name: ${{ name|lower }}
@@ -23,7 +24,7 @@ requirements:
     - pip
     - setuptools
   run:
-    - python >=${{ python_min }}
+    - python >=${{ python_min }},<4.0
     - django >=1.8
     - python-dateutil >=2.1
     - six >=1.14.0
@@ -33,12 +34,7 @@ tests:
       imports:
         - eventtools
       python_version: ${{ python_min }}.*
-  - requirements:
-      run:
-        - pip
-        - python ${{ python_min }}.*
-    script:
-      - pip check
+      pip_check: true
 
 about:
   summary: Recurring event tools for django
